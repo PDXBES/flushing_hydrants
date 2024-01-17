@@ -1,5 +1,5 @@
 
-# per Chris Kochiss - drains to assets (inlets, sed MHs, etc) can cross boundaries so can't exclude (create domains) strictly based on boundaries
+# per Chris - drains to assets (inlets, sed MHs, etc) can cross boundaries so can't exclude (create domains) strictly based on boundaries
 # may be able to exclude based on distance - says 200 - 250' should do it - therefore need to modify original pseudo
 # buffer hydrant, intersect buffer with "drains to" assets to create asset_dict
 
