@@ -21,16 +21,8 @@ try:
     log_obj.info("Create Nearby Asset CSV - Intersecting assets with buffer".format())
     sect = arcpy.Intersect_analysis([buff, config.BES_assets_combined], r'in_memory/sect', "ALL", '', "POINT")
 
-    log_obj.info("Create Nearby Asset CSV - Creating asset dictionary".format())
-    flushing_asset_dict = {}
-    # b/c this is a dict any duplicate UNITIDs (eg XXXX) will only show up once and the others dropped
-    with arcpy.da.SearchCursor(sect, ['UNITID', 'FACILITYID']) as cursor:
-        for row in cursor:
-            if row[1] is not None and row[1] <> '' and row[1] <> ' ':
-                flushing_asset_dict[row[0]] = row[1]
-
     # header (and data) must be in the format of ['name', 'label', group_name] eg group_name = FACILITYID (the hydrant_ID) if drains to assets are grouped by hydrant
-    header = ['name', 'label', 'group_name']
+    header = ['name', 'label', 'hydrant_id']
     output_file_name = r"group_names.csv"
     full_output = os.path.join(config.output_dir, output_file_name)
 
@@ -38,8 +30,10 @@ try:
     with open(full_output, 'wb') as output:
         writer = csv.writer(output)
         writer.writerow(header)
-        for key, value in flushing_asset_dict.items():
-            writer.writerow([key, key, value])
+        with arcpy.da.SearchCursor(sect, ['UNITID', 'FACILITYID']) as cursor:
+            for row in cursor:
+                if row[1] is not None and row[1] != '' and row[1] != ' ':
+                    writer.writerow([row[0], row[0], row[1]])
 
     log_obj.info("Create Nearby Asset CSV - Complete".format())
 
