@@ -32,8 +32,8 @@ try:
         writer.writerow(header)
         with arcpy.da.SearchCursor(sect, ['UNITID', 'FACILITYID']) as cursor:
             for row in cursor:
-                if row[1] is not None and row[1] != '' and row[1] != ' ':
-                    writer.writerow([row[0], row[0], row[1]])
+                if row[1] is not None and row[1] != '' and row[1] != ' ' and row[0] not in ('XXXX', 'XXXXXX', '', ' ') and row[0] is not None:
+                    writer.writerow([row[0], row[0], int(row[1])])
 
     log_obj.info("Create Nearby Asset CSV - Complete".format())
 
