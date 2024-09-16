@@ -3,6 +3,15 @@
 # may be able to exclude based on distance - says 200 - 250' should do it - therefore need to modify original pseudo
 # buffer hydrant, intersect buffer with "drains to" assets to create asset_dict
 
+# intent is for result of this to be used as a standalone csv input for a Survey123 domain
+# known problem with the result is you may get outlier drains to assets that are within threshold for multiple hydrants or outside of the threshold
+# or drains to assets that are just missing because of laggy or bad data☻
+# the ideal would be to perhaps use Arcade to apply this threshold for selected hydrant individually
+
+
+# DROPPING THIS IN FAVOR OF HAVING RAD QC THE INPUT SO AS NOT TO BE TOO RESTRICTIVE ON INPUT (TOO MANY OUTLIERS) - 20240522
+
+
 import arcpy
 import os
 import csv
@@ -17,7 +26,7 @@ try:
     log_obj.info("Create Nearby Asset CSV - Starting".format())
 
     log_obj.info("Create Nearby Asset CSV - Buffering targets".format())
-    buff = arcpy.Buffer_analysis(config.WB_hydrants_copy, r"in_memory/buff250", "250 Feet")
+    buff = arcpy.Buffer_analysis(config.WB_hydrants_copy, r"in_memory/buff200", "200 Feet")
     log_obj.info("Create Nearby Asset CSV - Intersecting assets with buffer".format())
     sect = arcpy.Intersect_analysis([buff, config.BES_assets_combined], r'in_memory/sect', "ALL", '', "POINT")
 

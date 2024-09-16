@@ -7,7 +7,13 @@ utility.datetime_print("Running Config")
 log_file = r"\\besfile1\ISM_PROJECTS\Work_Orders\WO_10233_M_Wood\hydrant_flushing_log"
 
 # this is the survey123 media folder: beware - will vary depending on WS/user
-output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\3095ba6b96484c45b226e5a0ea11b88e\media"
+# output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\Hydrant Request Form - Pilot3\media" #OLD
+output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\Hydrant Flushing Request Form\media"
+
+# question - use this instead of EGH_PUBLIC connection for consistency with assets in web map?
+ref_collection_nodes_fs = "https://www.portlandmaps.com/private/rest/services/BES_REFERENCE/FeatureServer/0"
+# flushing_areas_fs = "https://www.portlandmaps.com/ags/rest/services/Hosted/Flush_Areas_Pilot/FeatureServer/11" # test version
+flushing_areas_fs = "https://www.portlandmaps.com/private/rest/services/PWB_FlushingAreas/FeatureServer/0"
 
 # create separate connections folder for this job?
 sde_connections = r"\\besfile1\CCSP\03_WP2_Planning_Support_Tools\03_RRAD\CCSP_Data_Management_ToolBox\connection_files"
