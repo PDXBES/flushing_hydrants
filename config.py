@@ -8,7 +8,7 @@ log_file = r"\\besfile1\ISM_PROJECTS\Work_Orders\WO_10233_M_Wood\hydrant_flushin
 
 # this is the survey123 media folder: beware - will vary depending on WS/user
 # output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\Hydrant Request Form - Pilot3\media" #OLD
-output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\Hydrant Flushing Request Form\media"
+output_dir = r"C:\Users\DASHNEY\ArcGIS\My Survey Designs\01ac598d33824f59a85a8b1fd177ccf5\media"
 
 # question - use this instead of EGH_PUBLIC connection for consistency with assets in web map?
 ref_collection_nodes_fs = "https://www.portlandmaps.com/private/rest/services/BES_REFERENCE/FeatureServer/0"
